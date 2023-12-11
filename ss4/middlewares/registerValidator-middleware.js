@@ -26,6 +26,7 @@ export const registerValidator = async (req, res, next) => {
       break;
     }
   }
+
   
   if (duplicateEmail) {
     return res.json({ message: 'Email has existed. You must use a different email' });
