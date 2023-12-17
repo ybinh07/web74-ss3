@@ -9,7 +9,7 @@ cloudinary.config({
 });
 export const uploadImagesController = async (req, res, next) => {
   const imagePath = req.filePaths;
-  console.log(imagePath);
+  // console.log(imagePath);
 
   try {
     // Upload the image
@@ -25,12 +25,19 @@ export const uploadImagesController = async (req, res, next) => {
       return cloudinary.uploader.upload(imagePath, options);
     });
     const result = await Promise.all(uploadPromise); // promise.all(uploadPromise) -> chờ tất cả promise trong mảng hoàn thành
+     // console.log(result)
+     
     // lặp qua imagePath để unlink vì imagePath là mảng
     for (const path of imagePath) {
       await fsPromise.unlink(path);
     }
+    const images = result.map(item => item.secure_url)
+    return res.json({
+      message: "upload successfully",
+      pic : images
+    });
   } catch (error) {
     console.error(error);
   }
-  return res.json({});
+  
 };
