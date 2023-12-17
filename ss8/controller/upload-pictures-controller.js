@@ -26,7 +26,7 @@ export const uploadImagesController = async (req, res, next) => {
     });
     const result = await Promise.all(uploadPromise); // promise.all(uploadPromise) -> chờ tất cả promise trong mảng hoàn thành
      // console.log(result)
-     
+
     // lặp qua imagePath để unlink vì imagePath là mảng
     for (const path of imagePath) {
       await fsPromise.unlink(path);
@@ -34,7 +34,8 @@ export const uploadImagesController = async (req, res, next) => {
     const images = result.map(item => item.secure_url)
     return res.json({
       message: "upload successfully",
-      pic : images
+      number_of_pictures:images.length,
+      pic : images,
     });
   } catch (error) {
     console.error(error);
