@@ -45,6 +45,7 @@ export const registerValidator = async (req, res, next) => {
     email: email,
     password: password
   }
+  req.infStu = infStu
   dbUse.collection("students").insertOne(infStu);
   next();
 };

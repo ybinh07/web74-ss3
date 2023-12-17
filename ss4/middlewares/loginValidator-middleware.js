@@ -21,9 +21,11 @@ export const loginValidator = async (req, res, next) => {
     // nếu tồn tại email trong database thì check tiếp pass
     if (item.email === email) {
       findEmail = true;
+     
       if (item.password !== password) {
         return res.status(402).json({ error: "Incorrect password" });
       }
+      // req.item = item;
       break;
     }
   }
