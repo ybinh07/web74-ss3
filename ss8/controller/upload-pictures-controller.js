@@ -14,7 +14,7 @@ export const uploadImagesController = async (req, res, next) => {
   try {
     // Upload the image
 
-    const uploadPromise = imagePath.map(async (imagePath) => {
+    const uploadPromise = imagePath.map( (imagePath) => {
       // upload từng item trong mảng
       const options = {
         use_filename: true,

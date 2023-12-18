@@ -101,7 +101,7 @@ export const accessTokenValidator = validator(
               secretOrPublicKey: process.env.PRIVATE_KEY,
             });
             req.decode_authorization = decode_authorization;
-            console.log(decode_authorization)
+            // console.log(decode_authorization)
             return true;
           },
         },
